@@ -1,0 +1,6 @@
+# Visual Studio
+.vs/
+
+# ASP.NET Core
+bin/
+obj/
