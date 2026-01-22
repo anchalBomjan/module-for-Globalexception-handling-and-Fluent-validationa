@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace demo.Controllers
@@ -28,6 +29,20 @@ namespace demo.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        public IActionResult Create(WeatherForecast weatherForecast)
+        {
+            _logger.LogInformation("Creating a new weather forecast.");
+            return Ok(weatherForecast);
+        }
+
+        [HttpGet("error")]
+        public IActionResult GetError()
+        {
+            _logger.LogInformation("Throwing a test exception.");
+            throw new Exception("This is a test exception.");
         }
     }
 }

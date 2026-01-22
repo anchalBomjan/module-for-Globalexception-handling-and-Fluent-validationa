@@ -1,4 +1,7 @@
 
+using Common.Extensions;
+using System.Reflection;
+
 namespace demo
 {
     public class Program
@@ -8,7 +11,8 @@ namespace demo
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddGlobalExceptionHandler();
+            builder.Services.AddFluentValidation(Assembly.GetExecutingAssembly());
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +31,7 @@ namespace demo
 
             app.UseAuthorization();
 
+            app.UseGlobalExceptionHandler();
 
             app.MapControllers();
 
